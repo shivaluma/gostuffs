@@ -23,3 +23,12 @@ func LongestCommonSubsequence(text1 string, text2 string) int {
 
 	return dp[n][m]
 }
+
+/*
+   a b c d e
+ o 0 0 0 0 0
+ c 0 0 1 1 1
+ d 0 0 1 2 2
+ k 0 0 1 2 2
+ e 0 0 1 2 3
+*/
