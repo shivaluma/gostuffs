@@ -49,7 +49,23 @@ func (n *Node) Query(start, end int) int {
 	}
 
 	return n.left.Query(start, mid) + n.right.Query(mid+1, end)
+}
 
+func (n *Node) Update(index, value int) {
+	if n.start == n.end {
+		n.sum = value
+		return
+	}
+
+	mid := (n.start + n.end) / 2
+
+	if index <= mid {
+		n.left.Update(index, value)
+	}
+
+	n.right.Update(index, value)
+
+	n.sum = n.left.Sum() + n.right.Sum()
 }
 
 func NewSegmentTree(arr []int) *SegmentTree {
@@ -87,4 +103,8 @@ func buildTree(arr []int, start, end int) *Node {
 
 func (st *SegmentTree) Query(start, end int) int {
 	return st.root.Query(start, end)
+}
+
+func (st *SegmentTree) Update(idx, value int) {
+	st.root.Update(idx, value)
 }
